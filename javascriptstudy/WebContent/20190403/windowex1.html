@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190403/windowex1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>메세지 창 3종류 예제</title>
+</head>
+<body>
+	<form>
+		<input type="radio" name="dbox" onclick="this.form.echo.value=alert('alert 메세지 창 호출')">
+			alert 메세지 창 호출<br>
+		<input type="radio" name="dbox" onclick="this.form.echo.value=confirm('confirm 메세지 창 호출')">  <!-- 확인, 취소 버튼 있는 메세지 창. -->
+			confirm 메세지 창 호출<br>
+		<input type="radio" name="dbox" onclick="this.form.echo.value=prompt('prompt 메세지 창 호출')">  <!-- 입력받을 수 있는 창. -->
+			prompt 메세지 창 호출<br>
+		<input type="text" name="echo">
+	</form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190403/test1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>더하기 연산</title>
+<style type="text/css">
+	input {text-align: right;}
+</style>
+<script type="text/javascript">
+	function numadd() {
+//		n1 = parseInt(document.f.n1.value);  //parseInt() 해줘야 숫자형으로 인식.
+//		n2 = parseInt(document.f.n2.value);
+//		document.f.result.value = n1 + n2;
+		n1 = document.f.n1.value;
+		n2 = document.f.n2.value;
+		document.f.result.value = eval(n1 + '+' + n2);  //문자열로 된 수식을 실제 수식으로 인식하여 계산해줌.
+	}
+	function numadd2() {
+		n1 = document.f2.n1.value;
+		n2 = document.f2.n2.value;
+		op = document.f2.op.value;
+		document.f2.result.value = eval(n1 + op + n2);
+	}
+</script>
+</head>
+<body>
+	<h3>두 수를 입력 받아 더하기 연산의 결과를 출력하기.</h3>
+	<form name="f">
+		<input type="text" name="n1" size="5">+
+		<input type="text" name="n2" size="5">=
+		<input type="text" name="result" size="5">
+		<input type="button" value="결과보기" onclick="numadd()"><br>
+	</form>
+	<h3>두 수를 입력 받아 연산의 결과를 결과 입력란에 출력하기.</h3>
+	<form name="f2">
+		<input type="text" name="n1" size="5">
+		<select name="op">
+			<option>+</option>
+			<option>-</option>
+			<option>*</option>
+			<option>/</option>
+		</select>
+		<input type="text" name="n2" size="5">=
+		<input type="text" name="result" size="5">
+		<input type="button" value="결과보기" onclick="numadd2()"><br>
+	</form>
+</body>
+</html>

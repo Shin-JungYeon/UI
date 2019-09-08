@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190404/selectimgex1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>이미지 선택하기</title>
+<script type="text/javascript">
+	function drawImg(sel, img) {  //sel : select 태그, img : img 태그
+		img.src = "img/" + sel.value;  //현재 폴더 아래의 img 폴더 아래.
+	}
+</script>
+</head>
+<body>
+	<form name="f">
+		<table>
+			<tr>
+					<!-- onchange : select, check box에서 사용. 선택이 변경될 때.
+						 this : select 객체.
+						 document.f.img에서 f없어도 되는 이유 : image는 document 바로 아래의 객체.
+					-->
+				<td><select name="s" onchange="drawImg(this,document.img)">
+					<option value="strawberry.gif">딸기</option>
+					<option value="banana.gif">바나나</option>
+					<option value="apple.gif">사과</option>
+					</select></td>
+				<td><img name="img" src=""></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

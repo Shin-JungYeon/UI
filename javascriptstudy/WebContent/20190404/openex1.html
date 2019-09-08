@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190404/openex1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>새창을 열고 닫기</title>
+<script type="text/javascript">
+	var nw;  //nw 변수 선언. 함수 외부에서 선언된 var 변수는 전역변수로 사용 가능함.
+	function open_win() {
+		/*
+		   open : 새로운 윈도우를 화면에 생성하는 함수. window 객체의 내장 함수. window. 생략가능.
+		   open("url정보", "윈도우이름", "새로운 창의 option(크기, 위치 등)");
+		   
+		   nw : 새로운 윈도우의 window 객체를 의미함.
+		        var nw 변수 선언 : 함수 내부에서 var로 선언된 변수는 해당 함수에서만 사용가능한 지역변수로 선언 됨.
+		        var 없이 바로 값이 설정(초기화)되면 해당 함수 밖에서도 사용이 가능한 전역변수로 선언 됨.
+		*/
+		nw = window.open("inputchkex1.html", 'login',    //nw 앞에 var 쓰면 새창닫기 안됨. -> 지역변수로 설정되기 때문.
+				"width=600, height=100, menubar=no, top=200, left=200");  //top, left, ... : 화면에서 새창이 뜨는 위치 지정.
+		nw.document.write("새로 열려진 윈도우의 문서 객체입니다.<br>");
+		nw.document.write("openex1.html 페이지에서 open 함수로 생성되었습니다.<br>");
+		n1 = parseInt(num1.value);
+		n2 = parseInt(num2.value);
+		nw.document.write(n1 + "+" + n2 + "=" + (n1 + n2));
+	}
+	function close_win() {
+		nw.close();  //close() : window 객체의 내장 함수. 
+	}
+</script>
+</head>
+<body>
+	<a href="javascript:open_win()">새창열기</a><br>
+	<a href="javascript:close_win()">새창닫기</a><br>
+	<input type="text" id="num1" size="5">+<input type="text" id="num2" size="5">
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190403/hw1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>계산 문제</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function getInt() {
+			return Math.floor(Math.random() * 1000)%10;  //0 ~ 9 임의의 정수값 리턴.
+		}
+		var op = new Array("+", "-", "*", "/");
+		function getOp() {
+			return op[Math.floor(Math.random() * 4)];  //0 ~ 3 임의의 정수를 배열의 인덱스로 넣어 하나의 요소 선택.
+		}
+		var tcnt = prompt("맞추실 문제의 갯수를 입력하세요.", 0);  //문항 수 저장.
+		var cnt = 0;  //정답 수 저장.
+		for(i=0; i<tcnt; i++) {  //i 앞에 var(변수로 사용할거야) 있어도 없어도 가능. 함수 안에 var 들어가면 지역변수가 됨. 아니면 전역변수임.
+			str = getInt() + getOp() + getInt();
+			ans = prompt(str + "= 식의 정답을 입력하세요.", 0);  //, 0 : 기본값 설정. ans : 입력된 값 저장.
+			res = eval(str);  //시스템이 계산한 정답.
+			if(res != ans) {
+				document.write("입력한 값은" + ans + " 입니다.");
+				document.write("<font color='red' size='5'>" + " 틀렸습니다. </font>");
+				document.write(str + "=" + res + "입니다.<br>");
+			} else {
+				document.write("<font color='blue' size='7'>" + " 정답입니다. </font><br>");
+				cnt++;
+			}
+		}
+		document.write(tcnt + "문제 중 총 " + cnt + "개를 맞추셨습니다.");
+	</script>
+</body>
+</html>

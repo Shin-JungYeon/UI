@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190403/scriptex2.html -->
+<!-- DOM(Document Object Model) tree 구조. -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>text 요소의 값을 복사하기</title>
+<script type="text/javascript">
+	function valuecopy() {
+		t1 = document.f.t1.value;
+		document.f.t2.value = t1;
+	}
+</script>
+</head>
+<body>
+	<form name="f">  <!-- form 객체에 이름 부여. form 객체 내부의 멤버 호출할 때 사용. -->
+		<input type="text" name="t1"><br>
+		<input type="text" name="t2">
+		<input type="button" value="복사" onclick="valuecopy()"><br>
+	</form>
+</body>
+</html>

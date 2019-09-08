@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190404/gameex2.html -->
+<!-- 1. 객체 생성하기.
+	 2. 태그 위치 설정하기.
+ -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>과일 잡기 게임</title>
+<script type="text/javascript">
+	function nextRandomInteger(limit) {
+		return Math.round(Math.random() * limit);
+	}
+	function randomSpeed(maxSpeed) {
+		return Math.random()*maxSpeed - Math.random()*maxSpeed;
+	}
+	var canvasWidth = 700;
+	var canvasHeight = 500;
+	var total = 10;
+	imgMoving = new Image();
+	imgCatch = new Image();
+	imgMoving.src = "img/strawberry.gif";
+	imgCatch.src = "img/banana.gif";
+	
+	function MovingImg() {
+		this.x = nextRandomInteger(canvasWidth);
+		this.y = nextRandomInteger(canvasHeight);  //처음 시작 위치를 임의로 지정.
+		
+		this.vX = randomSpeed(2);
+		this.vY = randomSpeed(2);  //움직이는 속도 임의로 지정.
+		
+		this.body = document.createElement("img");  //<img> 태그 생성.
+		this.body.setAttribute("src", imgMoving.src);  //<img src="img/strawberry.gif">
+		this.body.style.position = "absolute";
+		var image = this.body;
+		this.body.onclick = function() {
+			if(image.src == imgMoving.src){
+				--total;
+				if(total > 2) {  //3개 남으면 이미지 변경 및 알림창 뜨지 않게함.
+					image.src = imgCatch.src;  //잡힌 이미지는 바나나로 변경.
+					alert("남은 딸기 수 : " + total)
+				}
+			}
+		}
+		//<body>
+		//	<img src="img/strawberry.gif">
+		//	<img src="img/strawberry.gif">
+		//	...  //10개 입력됨.
+		//</body>
+		document.body.appendChild(this.body);
+	}
+	
+	MovingImg.prototype.move = function() {
+		if(this.body.src == imgCatch.src) return;
+		if(this.x < 0 || this.x > canvasWidth) this.vX *= -1;
+		if(this.y < 0 || this.y > canvasHeight) this.vY *= -1;
+		this.x += this.vX;
+		this.y += this.vY;
+		this.body.style.left = this.x + "px";
+		this.body.style.top = this.y + "px";
+	}
+	window.onload = function() {
+		var movingImgs = [];
+		for(var i=0; i<10; i++) {
+			movingImgs.push(new MovingImg());
+		}
+		var game = setInterval(function() {
+			if(total < 4) {
+				alert("게임 종료");
+				clearInterval(game);
+				return;
+			}
+			for(var i in movingImgs) {
+				movingImgs[i].move();
+			}
+		}, 1000/60);
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190405/dateex2.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>달력 출력하기</title>
+<link rel="stylesheet" href="http://www.w3schools.com/w3css/4/w3.css">
+<script type="text/javascript">
+//	cal1 = new Date(2019, 4-1, 1);  //2019-04-01 일자 설정. 시작일
+//	cal2 = new Date(2019, 4, 1);
+//	cal2.setTime(cal2.getTime() - (1000*60*60*24));  //마지막일
+	function show_cal() {
+		var year = parseInt(y.value);  //id가 y인 select 객체에서 선택된 값.
+		var mon = parseInt(m.value);  //id가 m인 select 객체에서 선택된 값. 내용이 아닌 value를 가져옴.
+		
+		cal_first = new Date(year, mon-1, 1);  //선택한 달의 1일.
+		cal_last = new Date(year, mon, 1);  //선택한 다음 달의 1일.
+		//cal_last.getTime() : 1970년 이후부터 선택된 날짜까지의 시간을 밀리초로 리턴.
+		//  -> 하루에 해당하는 밀리초(1000*60*60*24)를 빼줘서 우리가 원하는 달의 마지막 날 얻을 수 있음.
+		cal_last.setTime(cal_last.getTime() - (1000*60*60*24));  //선택한 달의 마지막일.
+		
+		var html = "<table class='w3-table-all'><caption>" +  year + "년 " + mon + "월</caption>";  //문자열로 만들어 줘서 필요한 내용 계속 더해줄 수 있음.
+		html += "<tr class='w3-yellow'><th class='w3-text-red'>일</th><th>월</th><th>화</th>"
+					+ "<th>수</th><th>목</th><th>금</th><th class='w3-text-blue'>토</th></tr>";
+		
+		week = cal_first.getDay();
+		day = 0;  //출력할 일자를 저장할 변수.
+		
+		for(var i=0; i<6; i++) {
+			html += "<tr>";
+			for(var j=0; j<7; j++) {
+				if(j == 0) html += "<td class='w3-text-red'>";
+				else if(j == 6) html += "<td class='w3-text-blue'>";
+				else html += "<td>";
+				if(i == 0) {  //첫 주인 경우.
+					if(week <= j) html += ++day;
+					else html += "&nbsp;";
+				} else {  //그 외의 주인 경우.
+					if(cal_last.getDate() > day) html += ++day;
+					else html += "&nbsp;";
+				}
+				html += "</td>";
+			}
+			html += "</tr>";
+			if(day >= cal_last.getDate()) break;
+		}
+		
+		html += "</table>";
+		cal.innerHTML = html;  //cal : span의 id속성값. -> <span id="cal">html</span>
+		
+		//document.write(html);  그냥 화면에 html에 해당하는 내용만 출력할뿐 그 외의 스타일, select 등등은 가져가지 못함.
+	}
+</script>
+</head>
+<body>
+	<select id="y">
+		<option>2015</option><option>2016</option><option>2017</option>
+		<option>2018</option><option>2019</option><option>2020</option>
+	</select>
+	<select id="m">
+		<option value="1">1월</option><option value="2">2월</option><option value="3">3월</option>  <!-- 내용을 가져가면 월이라는 문자도 선택되기때문에 value따로 설정해줌. -->
+		<option value="4">4월</option><option value="5">5월</option><option value="6">6월</option>
+		<option value="7">7월</option><option value="8">8월</option><option value="9">9월</option>
+		<option value="10">10월</option><option value="11">11월</option><option value="12">12월</option>
+	</select>
+	<input type="button" value="달력보기" onclick="show_cal()"><br>
+	<span id="cal"></span>  <!-- span : 공간을 할당. -->
+</body>
+</html>

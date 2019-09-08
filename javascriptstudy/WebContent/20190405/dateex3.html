@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190405/dateex3.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>날짜 선택하기</title>
+<script type="text/javascript">
+	function show_date() {
+		dateprt.innerHTML = "선택된 날짜 : " + date.value;  //id속성값인 date임.
+	}
+</script>
+</head>
+<body>
+	<input type="date" id="date">  <!-- HTML5에 추가된 type.  -->
+	<input type="button" value="날짜입력" onclick="show_date()">
+	<div id="dateprt"></div>
+</body>
+</html>

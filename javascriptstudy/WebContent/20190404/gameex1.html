@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190404/gameex1.html -->
+<!-- 1. 객체 생성하기.
+	 2. 태그 위치 설정하기.
+ -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>글씨 잡기 게임</title>
+<script type="text/javascript">
+	function nextRandomInteger(limit) {
+		return Math.round(Math.random() * limit);  //0 ~ 700/500 사이의 임의의 정수
+	}
+	function randomSpeed(maxSpeed) {
+		//(0 ~ 2) - (0 ~ 2) -> -2 ~ 2
+		return Math.random()*maxSpeed - Math.random()*maxSpeed;
+	}
+	var canvasWidth = 700;
+	var canvasHeight = 500;
+	var total = 10;
+	//객체 생성하기.
+	function MovingText() {  //객체의 생성자. 자료형은 없음.
+		//this.~ 가 있으면 생성자. (this : MovingText)
+		//멤버 변수 선언. x, y, vX, vY, body 5개의 멤버 변수 가지고 있음.
+		this.x = nextRandomInteger(canvasWidth);  //0 ~ 700
+		this.y = nextRandomInteger(canvasHeight);  //0 ~ 500
+		
+		this.vX = randomSpeed(2);  //증감값 설정.
+		this.vY = randomSpeed(2);  
+		//this.body에 h1 태그 생성, 저장.
+		//  ->  <h1 style="background-color: white; position:absolute">A</h1>
+		this.body = document.createElement("h1");  //<h1>A</h1>
+		this.body.innerHTML = "A";
+		//setAttribute : 태그의 속성 등록.
+		this.body.setAttribute("style", "background-color: white");
+		this.body.style.position = "absolute";
+		var text = this.body;
+		this.body.onclick = function() {  //click 이벤트 발생시
+			--total;
+			alert("남은 문자 수 : " + total)
+			text.innerHTML = "B";
+		}
+		document.body.appendChild(this.body);
+	}
+	//MovingText.prototype : MovingText 객체의 멤버 메서드를 정의.
+	MovingText.prototype.move = function() {  //move 멤버메서드를 정의.  1000/60 초 마다 한 번씩 좌표 변경.
+		if(this.body.innerHTML == "B") return;  //클릭 해서 B가 되면 멈추도록.
+		if(this.x < 0 || this.x > canvasWidth) this.vX *= -1;
+		if(this.y < 0 || this.y > canvasHeight) this.vY *= -1;
+		this.x += this.vX;
+		this.y += this.vY;
+		this.body.style.left = this.x + "px";
+		this.body.style.top = this.y + "px";
+	}
+	//윈도우가 시작할 때
+	//onload 이벤트 핸들러 등록. 함수 호출.
+	window.onload = function() {
+		var movingTexts = [];  //배열 선언 및 생성. 자바의 List와 비슷한 개념.
+		for(var i=0; i<10; i++) {
+			movingTexts.push(new MovingText());  //new MovingText() : 객체 생성하기. -> 생성 후 push()로 배열에 저장.(10개)
+		}
+		//setInterval(function, 밀리초) : 밀리초마다 function 호출.
+		var game = setInterval(function() {
+			if(total < 4) {
+				alert("게임 종료");
+				clearInterval(game);  //setInterval 취소하기.
+				return;
+			}
+			//movingTexts : 10개의 객체를 저장하고 있는 배열.
+			for(var i in movingTexts) {
+				movingTexts[i].move();  //MovingText 객체 한 개의 move() 호출.
+			}
+		}, 1000/60);
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

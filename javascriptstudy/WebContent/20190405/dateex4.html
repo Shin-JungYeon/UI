@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190405/dateex4.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>초를 시, 분, 초로 환산하기</title>
+<link rel="stylesheet" href="http://www.w3schools.com/w3css/4/w3.css">
+<script type="text/javascript">
+	function calc() {
+		var s = parseInt(input.value);
+//		hour.value = (s - s%3600)/3600;
+		hour.value = Math.floor(s/3600);
+		temp = s%3600;
+//		min.value = (temp - temp%60)/60;
+		min.value = Math.floor(temp/60);
+		sec.value = temp%60;
+	}
+</script>
+</head>
+<body>
+	<table class="w3-table-all">
+		<tr>
+			<td>입력초</td>
+			<td><input type="text" id="input" class="w3-input"></td>
+			<td><input type="button" class="w3-button" value="시분초로 환산하기" onclick="calc()"></td>
+		</tr>
+		<tr>
+			<th>시</th><th>분</th><th>초</th>
+		</tr>
+		<tr>
+			<td><input type="text" id="hour" class="w3-input"></td>
+			<td><input type="text" id="min" class="w3-input"></td>
+			<td><input type="text" id="sec" class="w3-input"></td>
+		</tr>
+	</table>
+</body>
+</html>
