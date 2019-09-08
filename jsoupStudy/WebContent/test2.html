@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- /WebContent/test2.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>네이버 검색 API : 내 이름 검색</title>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		new ajax.xhr.Request("test2.jsp", null, parse, "GET");
+	})
+	
+	function parse(xhr) {
+		if(xhr.readyState == 4) {
+			if(xhr.status == 200) {
+				control(xhr);
+			}
+		}
+	}
+	
+	function control(xhr) {
+		var data = xhr.responseXML;
+		var cnt = xmlDoc.getElementsByTagName("");
+		htmldata = data.total;
+		resultcnt.innerHTML = htmldata;
+	}
+</script>
+</head>
+<body>
+	<div id="result"></div>
+	<div id="resultcnt"></div>
+</body>
+</html>
