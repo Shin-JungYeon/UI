@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- /src/mapper/mybatis-config.xml -->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org/DTD config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--
+	 DOCTYPE : 문서 작성 규칙을 나타내는 약속. xml의 태그를 정의. -> 조금이라도 틀리게 작성하면 바로 에러.
+	 DOCTYPE 바로 다음에 나오는 이름은 루트태그의 이름과 같아야 함. 여기에서는 configuration
+	 PUBIC : 국제적으로 인증을 받았다는 의미.
+-->
+<configuration>
+	<properties resource="mapper/mybatis.properties" />
+	<typeAliases>
+		<typeAlias type="mybatisjava.Member" alias="Member" />  <!-- type에 Member라고 쓰면 mybatisjava에 있는 Member임. -->
+		<typeAlias type="mybatisjava.Student" alias="Student" />
+	</typeAliases>
+	<environments default="development">  <!-- connection을 위한 기본 설정을 해줌.? connection 객체. -->
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">  <!-- 실제 connection 부분. POOLED : 미리 만들어진걸 사용. -->
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>  <!-- 쿼리문 연결 -->
+		<mapper resource="mapper/MemberMapper1.xml" />
+		<mapper resource="mapper/StudentMapper1.xml" />
+		<mapper resource="mapper/StudentMapper2.xml" />
+		<mapper resource="mapper/StudentMapper3.xml" />  <!-- 인터페이스를 사용하려면 반드시 연결해줘야 함. -->
+	</mappers>
+	
+</configuration>

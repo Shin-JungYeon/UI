@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- /src/mapper/StudentMapper2.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="student2">
+	<select id="selectByCondition" resultType="Student" parameterType="map">
+		select * from student
+		<where>  <!-- 동적쿼리 작성 방법. where문이 필요하면 조건을 걸어서 같은 id로 다른 결과값 출력 가능. -->
+			<if test="grade != null">  <!-- grade는 키 값. -->
+				grade = #{grade}
+		<!--	where grade = #{grade}  <where> 태그 없이 이렇게 작성해줘도 됨. -->
+			</if>
+			<if test="studno != null">  <!-- studno는 primary 값이므로 항상 null이 아님. -->
+				studno = #{studno}
+			</if>
+			<if test="height != null">
+				height >= #{height}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectByCondition2" resultType="Student" parameterType="map">
+		select * from student
+		<choose>  <!-- choose : if ... else if ... : 하나의 where절에 두 개 이상의 조건이 있을 때 -->
+			<when test="grade != null and height != null">
+				where grade = #{grade} and height >= #{height}
+			</when>
+			<when test="grade != null">
+				where grade = #{grade}
+			</when>
+			<when test="height != null">
+				where height >= #{height}
+			</when>
+		</choose>
+	</select>
+	
+	<select id="selectByTrim" resultType="Student" parameterType="map">
+		select * from student
+		<trim prefix="where" prefixOverrides="AND || OR">
+			<if test="grade != null">and grade = #{grade}</if>
+			<if test="height != null">and height >= #{height}</if>
+		</trim>
+	</select>
+	
+<!-- 
+	1. grade=1, height=180
+		select * from student and grade = #{grade} and height >= #{height}
+		-> select * from student where grade = #{grade} and height >= #{height}  trim에 의해 앞에서 부터 찾은 and(or)(결국 맨 앞의 and(or))는 where로 바뀜.
+	2. grade=1
+		select * from student and grade = #{grade}
+		-> select * from student where grade = #{grade}
+	3. height=180
+		select * from student and height = #{height}
+		-> select * from student where height >= #{height}
+ -->
+
+	<select id="selectByForeach" resultType="Student" parameterType="map">
+		select * from student
+		<if test="majors != null">
+			where ${column} in
+			<foreach collection="majors" item="m" separator="," index="i" open="(" close=")">  <!-- separator="," : in ()안에서 ,로 구분. -->
+				#{m}
+			</foreach>
+		</if>
+		<if test="grades != null">
+			where ${column} in
+			<foreach collection="grades" item="g" separator="," index="i" open="(" close=")">
+				#{g}
+			</foreach>
+		</if>
+	</select>
+</mapper>

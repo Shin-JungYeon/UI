@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- /src/mapper/StudentMapper3.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.StudentMapper3">
+<!-- namespace를 통해 인터페이스와 연결해주는 다리 역할. namespace와 인터페이스 이름이 반드시 같아야 함. -->
+<!-- 이 xml도 사용 가능하지만 interface에 이미 존재하는 메서드이름으로 id값에 사용 불가능. -->
+</mapper>

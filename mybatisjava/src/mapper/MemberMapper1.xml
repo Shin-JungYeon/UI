@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- /src/mapper/MemberMapper1.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">  <!-- namespace로 구분. 반드시 필요. -->
+	<select id="count" resultType="int">  <!-- id : 유일함을 강조. 해당 쿼리문을 실행할 때 id 사용. resultType="int" wrapper 클래스의 Integer 타입임. 내부적으로 alias로 설정되어 있음. -->
+		select count(*) from member
+	</select>
+	<!-- 
+		resultType="Member" : mybatisjava.Member 클래스의 객체로 생성하여 db의 내용을 저장하여 리턴. mybatis-config.xml에서 typeAlias 부여해서 가능한 표현.
+			member.setId(member 테이블의 id 컬럼 설정.)
+			...
+			->컬럼명과 set 프로퍼티의 이름이 같아야 함. 그렇지 않으면 null. 컬럼명의 alias와 프로퍼티의 alias를 맞춰줘도 가능. 어쨌든 둘이 같아야 해.
+	 -->
+	<select id="list" resultType="Member">  <!-- 프로퍼티와 컬럼명이 같을 때에만 Member 객체에 저장. -->
+		select * from member
+	</select>
+</mapper>
