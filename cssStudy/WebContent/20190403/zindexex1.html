@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190403/zindexex1.html -->
+<!-- z-index 속성 : 숫자 값이 크면 위쪽에 배치. position 속성과 같이 사용해야 함.
+     position 속성 : 위치 지정 속성
+       1. static   : 0부터 차례대로 배치. 기본값. z-index 사용 불가.
+       2. relative : 앞의 요소의 상대 좌표.
+       3. fixed    : 브라우저 기준의 절대 좌표. 창의 크기와 상관없이, 스크롤시에도 화면 고정.
+       4. absolute : 절대 좌표. document 기분의 절대 좌표.
+       -> static position을 제외하고 left, right, top, bottom 좌표를 사용할 수 있음.
+-->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>아이템 배치하기</title>
+<style type="text/css">
+	div {width: 200pt; height: 200pt;}
+	div:hover {color: #fff; background-color: black;}
+	.p0 {
+		z-index: 100;
+		background-color: pink; cursor: crosshair;
+	}
+	.p1 {
+		z-index: 1;  /* 숫자 작을수록 뒤쪽에 배치. 음수도 가능. */
+		position: fixed; top: 10pt; right: 0pt;
+		background-color: yellow; cursor: crosshair;
+	}
+	.p2 {
+		z-index: 4;
+		position: relative; top: 10pt; left: 10pt;
+		background-color: gray; cursor: pointer;
+	}
+	.p3 {
+		z-index: 0;
+		position: absolute; bottom: 10pt; right: 100pt;
+		background-color: blue; cursor: move;
+	}
+	.p4 {
+		z-index: 3;
+		position: absolute; top: 150pt; left: 150pt;
+		background-color: red; cursor: wait;
+	}
+</style>
+</head>
+<body>
+	<div class="p0">위치지정하기</div>
+	<div class="p1">위치지정하기</div>
+	<div class="p2">위치지정하기</div>
+	<div class="p3">위치지정하기</div>
+	<div class="p4">위치지정하기</div>
+</body>
+</html>

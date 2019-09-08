@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190402/alink.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>하이퍼링크 문자 꾸미기</title>
+<style type="text/css">
+	td, body {  /* 병렬태그. td, body 태그 둘 다. */
+		margin: 0;
+		color: #330099;
+		font-size: 10px;
+		padding-left: 20px;
+		line-height: 20px;
+		border: thick;
+	}
+	a {
+		text-decoration: none;  /* 링크가 걸린 글자에 밑줄. */
+		color: #666699;
+		font-size: 20px;
+	}
+	/* 
+	   link : a 태그의 기본적인 설정. 방문한 적이 없을 경우의 초기 상태.
+	   visited : 방문한 적이 있는 상태.
+	   hover : 마우스가 영역내부에 들어오는 경우 -> 노란색으로 변경.
+	   active : 마우스가 클릭된 상태.
+	 */
+	a:link {
+		color: blue;
+	}
+	a:visited {
+		color: red;
+	}
+	a:hover {  /* 이벤트 형태 */
+		color: yellow;
+	}	
+	a:active {  /* 이벤트 형태 */
+		color: pink;
+	}
+	/* a 태그의 class 속성이 default인 경우 설정하기. 방문한 사이트 색상은 green으로 설정.*/
+	a.default:visited {
+		color: green;
+	}
+	/* a 태그의 class 속성이 color인 경우 설정하기. 마우스가 영역에 들어온 경우 green으로 설정.*/
+		a.color:hover {  /* 이벤트 형태 */
+		color: green;
+	}
+	/* a 태그의 class 속성이 default인 경우 설정하기. 밑줄이 표시 되도록 설정.*/
+	a.default {
+		text-decoration: underline;
+	}
+	h1.a1 { color: red; }
+	h1.b1 {	background-color: black; }
+</style>
+
+</head>
+<body>
+	<table width="500" align="center" border="0">
+		<tr valign="top">
+			<td>마우스를 올리면......
+				<hr>
+				<b>기본값</b><br>
+				<a href="http://www.naver.com" class="default">네이버</a>
+				<a href="http://www.daum.net" class="default">다음</a>
+				<a href="http://www.google.com" class="default">구글</a>
+				<hr>
+				<a href="http://www.naver.com" class="color">네이버</a>
+				<a href="http://www.daum.net" class="color">다음</a>
+				<a href="http://www.google.com" class="color">구글</a>
+			</td>
+		</tr>
+	</table>
+	<!-- 문제 : h1 태그의 class 속성이 a1인 경우 글자색을 빨강색으로, class 속성이 b1인 경우 배경색을 검정색으로 설정하기. -->
+	<h1 class="a1 b1">class 속성 = a1</h1>  <!-- class 속성의 값은 여러 개 일 수 있음. id속성의 값은 유일해야 함. -->
+	<h1 class="b1">class 속성 = b1</h1>
+	<h1 class="a1">class 속성 = a1</h1>
+</body>
+</html>

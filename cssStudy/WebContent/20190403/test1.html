@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190403/test1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>선택자 연습 문제</title>
+<!-- id속성값이 header 하위의 모든 h1 태그의 글자색을 red로 설정하기.
+	 id속성값이 section 바로 하위의 h1 태그만 글자색을 orange 설정하기.
+	  그 외의 글자색은 blue로 설정하기.
+-->
+<style type="text/css">
+	div {color: blue;}  /* 큰 단위를 가장 먼저 써주는 것이 좋음. */
+	* {color: blue;}  /* * : 모든 태그를 의미함. 기본 설정을 지정해줄 때 사용. */
+	div#header h1 {color: red;}
+	div#section > h1 {color: orange;}
+</style>
+</head>
+<body>
+	<div id="header">
+		<h1 class="title">Header h1 태그 class 속성값이 title</h1>
+		<div>
+			<h1>메뉴만들기</h1>
+		</div>
+	</div>
+	<div id="section">
+		<h1 class="title">Section h1 태그 class 속성값이 title</h1>
+		<div>
+			<h1>제목</h1>
+			<p>내용,내용,내용,내용,내용,내용</p>
+		</div>
+	</div>
+</body>
+</html>
