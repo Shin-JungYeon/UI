@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- /jspStudy2/src/mapper/BoardMapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BoardMapper">
+	<select id="select" parameterType="map" resultType="Board">
+		select * from board
+		<if test="num != null">
+			where num = #{num}
+		</if>
+		<if test="column != null and find != null">
+			<choose>
+				<when test="column == 'subcon'">
+					where subject like '%${find}%' or content like '%${find}%'
+				</when>
+				<otherwise>
+					where ${column} like '%${find}%'
+				</otherwise>
+			</choose>
+<!-- 
+		MemberDao에서 컬럼명이 여러 개여서 둘로 나눠줬을 때 사용. 내가 한 건 무조건 subject와 content를 검색해야 하지만 강사님이 하신건 list.jsp에서만 바꿔주면 되니까 사용할 수 있는 경우의 수가 더 많고 편리.
+		<if test="column != null and find != null">  col1은 column으로 받아서 이름 그대로 사용 가능.
+			where ${column} like '%${find}%'
+			<if test="col2 != null">
+				or ${col2} like '%${find}%'
+			</if>
+		</if>
+ -->
+		</if>
+		<if test="start != null">
+			order by ref desc, refstep asc limit #{start},#{limit}
+		</if>  <!-- 순서 중요. -->
+	</select>
+	<select id="count" parameterType="map" resultType="int">
+		select count(*) from board  <!-- 두 파라미터에 null 이 들어오면 where 없어서 그냥 전체에 대한 count 리턴. -->
+		<if test="column != null and find != null">
+			<choose>
+				<when test="column == 'subcon'">
+					where subject like '%${find}%' or content like '%${find}%'
+				</when>
+				<otherwise>
+					where ${column} like '%${find}%'
+				</otherwise>
+			</choose>
+		</if>
+		<!-- 
+		MemberDao에서 컬럼명이 여러 개여서 둘로 나눠줬을 때 사용. 
+		<if test="column != null and find != null">  col1은 column으로 받아서 이름 그대로 사용 가능.
+			where ${column} like '%${find}%'
+			<if test="col2 != null">
+				or ${col2} like '%${find}%'
+			</if>
+		</if>
+ -->
+	</select>
+</mapper>
