@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- /WebContent/address.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+	function startxml(rtype, tag) {
+		requestType = rtype;  //지역 변수를 전역변수로 바꿔주기 위해. 앞에 var 있으면 안됨. 아래 function에서도 사용 가능하게 하기 위함.
+		requestTag = tag;
+		sendRequest("address.xml", null, parseXml, "GET");
+	}
+	
+	function parseXml() {
+		if(ajax.readyState == 4) {
+			if(ajax.status == 200) {
+				if(requestType == 'all')
+					listAllStates();
+				else listPartStates();
+			} else {
+				alert("서버 오류 : " + ajax.status);
+			}
+		}
+	}
+	
+	function listAllStates() {
+		var xmlDoc = ajax.responseXML;  //xml을 DOM tree 형태로 객체를 전달해줌. xmlDoc : 최상단에 있는 문서노드를 가지게 됨.
+		var allStates = xmlDoc.getElementsByTagName("state");  //배열 형태로 저장.
+		var divTag = document.getElementById("result");  //document 자체가 문서 노드이기 때문에 getElementById도 DOM tree 형태에서 태그를 찾아가는 것. id속성은 유일함.
+		for(var i=0; i<allStates.length; i++) {
+			divTag.innerHTML += "<br>- " + allStates[i].childNodes.item(0).nodeValue;
+			//allStates[0] : <state>
+			//childNodes.item(0) : state의 하위 노드(강북구, 강남구 등등..). 단 한 개뿐이지만 그래도 배열로 전달해줌. childNodes[0] 으로 바꿔줘도 같은 결과.
+			//nodeValue : 문자열로 가져옴. 
+		}
+	}
+	
+	function listPartStates() {
+		var xmlDoc = ajax.responseXML;  //DOM tree.
+		var node = xmlDoc.getElementsByTagName(requestTag)[0];  //requestTag에 저장된 것(예를들면 east)이 한 개라는 보장이 없으므로 [0] 붙여준 것.
+		var states = node.getElementsByTagName("state");
+		var divTag = document.getElementById("result");
+		divTag.innerHTML = "서울 " + requestType + "쪽 구";
+		for(var i=0; i<states.length; i++) {
+			divTag.innerHTML += "<br>- " + states[i].childNodes[0].nodeValue;
+		}
+	}
+	
+/*
+ * xml parser : 번역기
+ *	DOM parser : DOM tree 형태의 객체 리턴. 미리 만들어 놓은 형태이므로 찾기 쉬움(장). 메모리를 많이 차지함(단). 
+ *	SAX parser : DOM tree 형태가 아니라 이벤트 형태로 xml 분석함. 처음부터 쭉 훑음(시작 ~ 종료). 한 번 훑고 다시 되돌아갈 수 없어 다시 처음부터 해야 함. 대신 메모리랑 상관 없음. DOM 보다 빠름. DOM은 메모리를 먼저 할당해야 함.
+ */
+</script>
+</head>
+<body>
+	<h1>서울의 구 정보</h1>
+	<input type="button" value="서울 전체 구" onclick="startxml('all','all')">
+	<input type="button" value="서울 동쪽 구" onclick="startxml('동','east')">
+	<input type="button" value="서울 서쪽 구" onclick="startxml('서','west')">
+	<input type="button" value="서울 남쪽 구" onclick="startxml('남','south')">
+	<input type="button" value="서울 북쪽 구" onclick="startxml('북','north')">
+	<div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190402/inputtag.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>input 태그 연습</title>
+</head>
+<body>
+	<form>
+		<input type="text" value="한줄에디터"><br>  <!-- 문자입력창 -->
+		<input type="password" value="비밀번호"><br>  <!-- 비밀번호 입력창. 문자 가려줌. -->
+		<input type="checkbox" value="여행">여행&nbsp;&nbsp;  <!-- 체크박스 -->
+		<input type="checkbox" value="독서">독서<br>
+		<input type="radio" name="g" value="남">남&nbsp;&nbsp;
+		<input type="radio" name="g" value="여">여<br>  <!-- radio : 둘 중 하나 선택. name이 같아야 함. -> 같지 않으면 둘 다 선택이 가능해지고 취소불가. -->
+		<input type="button" value="버튼" onclick="alert('버튼클릭됨')"><br>  <!-- 클릭 가능한 버튼. onclick : 이벤트 처리. alert() : 알림창 뜸. -->
+		<input type="submit" value="전송"><br>  <!-- 클릭 가능한 버튼. 다른 페이지로 원하는 내용 보낼 수 있음. -->
+		<input type="reset" value="리셋버튼"><br>  <!-- 모든 변경 사항을 초기화시킴. -->
+		<hr>
+		<select>
+			<option>A</option><option>B</option>  <!-- 선택지. -->
+		</select>
+	</form>
+</body>
+</html>

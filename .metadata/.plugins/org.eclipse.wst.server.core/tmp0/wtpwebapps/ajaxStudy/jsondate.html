@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- /WebContent/jsondate.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>JSON 데이터 연습</title>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+	function resultView() {
+		if(ajax.readyState == 4) {
+			if(ajax.status == 200) {
+				jsonView(ajax.responseText);
+			} else {
+				alert("서버 오류 : " + ajax.status);
+			}
+		}
+	}
+	
+	function jsonView(jsondata) {
+		editdata = "<br><table border='1'><tr><th>우편번호</th><th>읍면동</th><th>주소</th></tr>";
+		var data = eval("(" + jsondata + ")");
+		//문자열을 그대로 수식화. data : json 객체로 생성되어 저장. 괄호는 안해주면 인식을 못해서..
+		//수식화라는게 우리가 아는 일반적은 수학적 식이 아닌 jsondata.jsp는 문자열로 작성되어져 있기 때문에 객체로 인식시키기 위한 과정임.
+		for(var i=0; i<data.ZIP.length; i++) {
+			var code = data.ZIP[i].zipcode;
+			var dong = data.ZIP[i].dong;
+			var addr = data.ZIP[i].addr;
+			editdata += "<tr><td>" + code + "</td><td>" + dong + "</td><td>" + addr + "</td></tr>";
+		}
+		editdata += "</table>";
+		result.innerHTML = editdata;
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="우편번호" onclick="sendRequest('jsondata.jsp', null, resultView, 'GET')"><br>
+	<div id="result"></div>
+</body>
+</html>

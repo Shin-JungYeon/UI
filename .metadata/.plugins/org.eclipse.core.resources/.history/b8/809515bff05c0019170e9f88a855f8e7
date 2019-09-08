@@ -1,0 +1,40 @@
+<%@page import="model.MemberDao"%>
+<%@page import="model.Member"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%-- /WebContent/model1/member/update.jsp --%>
+<%--
+	1. 모든 파라미터를 Member 객체에 저장하기. useBean
+	2. 입력된 비밀번호와 db의 비밀번호가 같으면 3번으로 실행.
+	       다르면 비밀번호 오류 메세지 출력. -> updateForm.jsp로 페이지 이동.
+	3. 1번의 Member 객체를 db에 수정하기. int update(Member)
+		- 결과가 1 이상 : "수정이 완료되었습니다." -> main.jsp로 페이지 이동.
+		- 결과가 0 : "수정에 실패하였습니다." -> updateForm.jsp로 페이지 이동.
+--%>
+<% request.setCharacterEncoding("euc-kr"); %>
+<jsp:useBean id="mem" class="model.Member" />  <%-- 파라미터에 있는 값을 전부 mem에 저장 가능. 빈클래스의 멤버변수와 파라미터 이름이 같기때문에 가능. --%>
+<jsp:setProperty property="*" name="mem" />
+<%
+	String msg = null;
+	String url = null;	
+	System.out.println(mem);
+	MemberDao dao = new MemberDao();
+	Member dbMem = dao.selectOne(mem.getId());  //db에 저장되어 있는 정보. id는 수정 불가이므로 id를 통해 가져옴.
+	
+	if(!mem.getPass().equals(dbMem.getPass())) {  //mem.getPass() : 입력된 정보.
+		msg = "비밀번호가 잘못되었습니다.";
+		url = "updateForm.jsp?id=" + mem.getId();
+	} else {
+		if(dao.update(mem) > 0) {  //update 성공.
+			msg = mem.getId() + "님의 회원 정보 수정이 완료되었습니다.";
+			url = "info.jsp";
+		} else {  //update 실패.
+			msg = mem.getId() + "님의 회원 정보 수정이 실패하였습니다. 다시 입력해주세요.";
+			url = "updateForm.jsp?id=" + mem.getId();
+		}
+	}
+%>
+<script>
+	alert("<%=msg %>");
+	location.href="<%=url %>";
+</script>

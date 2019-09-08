@@ -1,0 +1,46 @@
+1558937375769	Rename type 'Request'
+1558937395001	Rename type 'RequestDao'
+1558937442226	Rename resource 'RequestMapper.xml'
+1558937456160	Rename type 'RequestMapper'
+1558937581425	Rename type 'JoinReqDao'
+1558941006018	Delete elements
+1558941027122	Delete element
+1558941132731	Rename resource 'infoReq.jsp'
+1558941361299	Rename type 'InfoMem'
+1558945974781	Rename resource 'careerlist.jsp'
+1558948175326	Rename resource 'careeradd.jsp'
+1559003360189	Delete element
+1559023371463	Move compilation unit
+1559023379009	Delete element
+1559025600078	Copy compilation unit
+1559025605249	Delete element
+1559029056078	Encapsulate field 'reqtel'
+1559029064373	Encapsulate field 'reqemail'
+1559031940640	Encapsulate field 'no'
+1559091286138	Copy file
+1559105628488	Delete elements
+1559110472428	Delete element
+1559110481033	Delete element
+1559113820271	Delete element
+1559178645870	Rename resource 'infoCon.jsp'
+1559178854898	Delete element
+1559183340372	Copy file
+1559183351245	Copy file
+1559183364851	Rename resource 'imgUpload.jsp'
+1559183375971	Rename resource 'imgUploadForm.jsp'
+1559185564529	Encapsulate field 'num'
+1559185647862	Rename type 'InfoboardDao'
+1559194509945	Delete element
+1559202526938	Encapsulate field 'likenum'
+1559202529859	Encapsulate field 'likeid'
+1559207805444	Delete element
+1559207835468	Rename resource 'posterUpload.jsp'
+1559207843962	Rename resource 'posterUploadForm.jsp'
+1559207939857	Rename resource 'imgUploadForm.jsp'
+1559207947028	Rename resource 'imgUpload.jsp'
+1559275560443	Delete element
+1559280588081	Encapsulate field 'psub'
+1559280592237	Encapsulate field 'pcon'
+1559280594446	Encapsulate field 'schedule1'
+1559280597339	Encapsulate field 'schedule2'
+1559280599799	Encapsulate field 'cate'

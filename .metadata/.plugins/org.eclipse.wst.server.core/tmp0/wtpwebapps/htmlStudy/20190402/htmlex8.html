@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190402/htmlex8.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Table 태그 예제 1</title>
+</head>
+<body>
+	<table border="1" cellspacing="0" cellpadding="0">
+	<!-- border : 테두리, cellspacing="0" cellpadding="0" : 테두리 선에 공간 없이 -->
+	<!-- cellspacing : 각 셀들의 간격. cellpadding : 셀 안의 내용들과 셀의 경계선과의 간격. -->
+		<thead><tr><th>Header1</th><th>Header2</tr></tr></thead>  <!-- <tr></tr> : 가로 한 줄. 갯수 계속해서 동일하게 작성해야 함. -->
+		<tbody><tr><td>Data1</td><td>Data2</td></tr></tbody>
+		<tfoot><tr><td>Foot1</td><td>Foot2</td></tr></tfoot>
+	</table>
+	<br>
+	<table border="1" style="border-collapse: collapse">  <!-- 위와 동일한 스타일임. -->
+		<tr><th>Header1</th><th>Header2</tr></tr>
+		<tr><td>Data1</td><td>Data2</td></tr>
+		<tr><td>Foot1</td><td>Foot2</td></tr>
+	</table>
+</body>
+</html>

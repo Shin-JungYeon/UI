@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>공연 관계자 회원가입</title>
+<script type="text/javascript">
+	function win_upload() {
+		var op = "width=500, height=150, left=50, top=150";
+		open("imgUploadForm.jsp", "", op);
+	}
+	function win_overlapchk() {
+		var op = "width=500, height=150, left=50, top=150";
+		open("overlapChk.do", "", op);
+		
+	}
+	function addcarrer() {
+		
+	}
+</script>
+</head>
+<body>
+	<form action="joinCon.do" name="f" method="post">
+		<input type="hidden" name="classify" value="${param.classify }">
+		<input type="hidden" name="picture" value="">
+		<input type="hidden" name="genre" value="">
+		<table>
+			<tr><td colspan="2"><img src="" id="pic"><br>
+				<font size="1"><a href="javascript:win_upload()">[사진등록]</a></font></tr>
+			<tr><td><input type="text" name="id" value="아이디"><td><input type="button" value="중복확인" onclick="win_overlapchk()"></td></tr>
+			<tr><td colspan="2"><input type="password" name="pass" value="비밀번호"></td></tr>
+			<tr><td colspan="2"><input type="text" name="name" value="이름"></td></tr>
+			<tr><td colspan="2">
+					<input type="radio" name="gender" value="1">남
+					<input type="radio" name="gender" value="2">여</td></tr>
+			<tr><td colspan="2"><input type="text" name="tel" value="전화번호"><br></td></tr>
+			<tr><td colspan="2"><input type="text" name="email" value="이메일"></td></tr>
+			<tr><td><input type="text" name="nick" value="닉네임"></td><td><input type="button" value="중복확인" onclick="win_overlapchk()"></td></tr>
+			<tr><td colspan="2">이력 추가</td></tr>
+			<tr id="career"><td><input type="text" name="career" value="이력 추가"></td><td><input type="button" value="+" onclick="javascript:addcarrer()"></td></tr>
+			<tr><td colspan="2"><input type="submit" value="가입"></td></tr>
+		</table>	
+	</form>
+</body>
+</html>

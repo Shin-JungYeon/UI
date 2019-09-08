@@ -1,0 +1,44 @@
+<%@page import="java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%-- /WebContent/jdbc/hw_20190410/hw_jdbc.jsp --%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>간단한 sql 구문 조회</title>
+<link rel="stylesheet" href="/jspStudy1/css/main.css">
+</head>
+<body>
+	<form action="hw_jdbc.jsp" method="post">
+		<textarea rows="10" cols="60" name="내용"></textarea>
+		<input type="submit" value="실행">
+	</form>
+	<%
+		request.setCharacterEncoding("euc-kr");
+		
+		Class.forName("org.mariadb.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/bigdb", "scott", "tiger");
+		
+		String content=request.getParameter("내용");
+		
+		PreparedStatement pstmt = conn.prepareStatement(content);
+		ResultSet rs = pstmt.executeQuery();
+		ResultSetMetaData rsmt = rs.getMetaData();
+	%>
+	<h2>조회된 컬럼수 : </h2><%=rsmt.getColumnCount() %>&nbsp;&nbsp;&nbsp;&nbsp;
+	<h2>조회된 레코드 수 : </h2><%="" %>
+	<table>
+		<tr><% for(int i=1; i<=rsmt.getColumnCount(); i++) { %>
+			<th><%=rsmt.getColumnName(i) %></th>
+			<% } %>
+		</tr>
+		<% while(rs.next()) { %>
+		<tr><% for(int i=1; i<=rsmt.getColumnCount(); i++) { %>
+			<td><%=rs.getString(i) %></td>
+			<% } %>
+		</tr>
+		<% } %>
+	</table>
+</body>
+</html>

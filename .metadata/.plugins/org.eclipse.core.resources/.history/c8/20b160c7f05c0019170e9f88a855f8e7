@@ -1,0 +1,91 @@
+<%@page import="model.MemberDao"%>
+<%@page import="model.Member"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%-- /WebContent/model1/member/updateForm.jsp --%>
+<%--
+	1. id 파라미터 가져오기.
+	2. login 상태 검증 필요.
+		- 로그아웃 상태 : "로그인이 필요한 페이지입니다." 메세지 출력 후 loginForm.jsp 페이지로 이동.
+	3. 로그인 상태
+		- id 파라미터 정보와 login 정보를 비교해서 다르면 "자신의 정보만 조회 가능합니다." 메세지 출력 후 info.jsp 페이지로 이동.
+		- id 파라미터 정보와 login 정보를 비교해서 다르지만 login이 관리자인 경우와 id와 로그인 정보가 같은 경우 화면에 내용 출력. -> MemberDao().selectOne(id) 메서드 이용.
+	4. db에서 id에 해당하는 회원의 정보를 조회해서 화면에 출력. 
+--%>
+<%
+	String id = request.getParameter("id");
+	String login = (String) session.getAttribute("login");
+	
+	if(login == null || login.trim().equals("")) { //로그인이 안 된 경우.
+%>
+	<script>
+		alert("로그인이 필요한 페이지입니다.");
+		location.href="loginForm.jsp";
+	</script>
+<%
+	} else if(!login.equals("admin") && !login.equals(id)) {  //로그인은 됐지만 관리자도 아니고 내 id도 아닌 경우.
+%>
+	<script>
+		alert("자신의 정보만 수정 가능합니다.");
+		location.href="info.jsp?id=<%=login%>"  <%-- 파라미터 입력해서 자신의 정보로 돌아갈 수 있게 해줘야 함. url에 공백 넣어서 코딩하기 말기. --%>
+	</script>
+<%	
+	} else {
+		Member mem = new MemberDao().selectOne(id);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>회원 정보 수정 화면</title>
+<link rel="stylesheet" href="/jspStudy1/css/main.css">
+<script type="text/javascript">
+	function input_check(f) {
+		if(f.pass.value == "") {
+			<%if(login.equals("admin")) { %>
+				f.pass.value = "<%=mem.getPass() %>";
+				
+				return true;
+			<%} else {%>
+			alert("비밀번호를 입력하세요.");
+			f.pass.focus();
+			return false;
+			<% }%>
+		}
+		return true;
+	}
+	function passchg_winopen() {
+		var op = "width=500, height=230, left=50, top=150";
+		open("passwordForm.jsp", "", op);  //새로운 창 띄우기.
+	}
+</script>
+</head>
+<body>
+	<form action="update.jsp" name="f" method="post" onsubmit="return input_check(this)">  <%-- onsubmit : 이벤트 처리 --%>
+		<input type="hidden" name="picture" value="">
+		<table>
+			<caption>MODEL1 회원 정보 수정</caption>
+			<tr><td rowspan="4" valign="bottom">
+					<img src="img/<%=mem.getPicture() %>" width="100" height="120"><br>
+					<font size="1"><a href="#">사진수정</a></font>
+				</td>
+				<td>아이디</td><td><input type="text" name="id" value="<%=mem.getId() %>" readonly></td>  <%-- readonly : 보여주기만 하고 수정 불가능. --%>
+			</tr>
+			<tr><td>비밀번호</td><td><input type="password" name="pass"></td></tr>
+			<tr><td>이름</td><td><input type="text" name="name" value="<%=mem.getName() %>"></td></tr>
+			<tr><td>성별</td>
+				<td><input type="radio" name="gender" value="1" <%=mem.getGender()==1?"checked":"" %>>남  <%-- radio 버튼의 특성상 마지막에 체크된 것으로만 보여줌. 때문에 남에는 조건식 안써줘도 됨. --%>
+					<input type="radio" name="gender" value="2" <%=mem.getGender()==2?"checked":"" %>>여</td>
+			</tr>
+			<tr><td>전화번호</td><td colspan="2"><input type="text" name="tel" value="<%=mem.getTel() %>"></td></tr>
+			<tr><td>이메일</td><td colspan="2"><input type="text" name="email" value="<%=mem.getEmail() %>"></td></tr>
+			<tr><td colspan="3">
+					<input type="submit" value="회원수정">
+					<input type="button" value="비밀번호변경" onclick="passchg_winopen()">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
+<%	} %>

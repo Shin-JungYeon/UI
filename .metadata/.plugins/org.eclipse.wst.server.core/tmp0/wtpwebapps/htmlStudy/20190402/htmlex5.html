@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- /WebContent/20190402/htmlex5.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>특수문자 출력하기 : 특수엔티티:&xxx</title>
+</head>
+<body>
+	<h3> 공백 :          -> 공백 문자 입니다.</h3> <!-- 공백 인식 안 됨. -->
+	<h3> 공백 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-> 공백 문자 입니다.</h3>  <!-- &nbsp; : 공백 한 개. -->
+	<h3> <태그>내용</태그> : 태그는 시작태그와 종료태그의 쌍으로 구현함.</h3>  <!-- < : 태그의 시작, > : 태그의 끝, </> : 종료태그 -> 화면에 출력 안 됨. -->
+	<h3> &lt;태그&gt;내용&lt;/태그&gt;</h3>  <!-- &lt; : < 문자 그대로, &gt; : > 문자 그대로를 의미. -->
+	<script>자바 스크립트의 영역입니다.</script>  <!-- 자바스크립트로 인식해서 화면에 내용 출력 안 됨. -->
+	&lt;script&gt;자바 스크립트의 영역입니다.&lt;/script&gt;
+	<h3>HTML&amp;CSS&amp;JavaScript는 클라이언트의 언어입니다. 브라우저 내부에 인터프리터가 존재합니다.
+	    -> 브라우저별로 다른 모양이나 결과는 표시할 수 있습니다.</h3>  <!-- &amp; : & -->
+	<h3>&quot;html 언어&quot;를 시작합니다.</h3>  <!-- &quot; : " -->
+	<h3>&copy;빅데이터 시각화 분석 과정입니다.</h3>
+	<h3>&trade;빅데이터 시각화 분석 과정입니다.</h3>
+</body>
+</html>

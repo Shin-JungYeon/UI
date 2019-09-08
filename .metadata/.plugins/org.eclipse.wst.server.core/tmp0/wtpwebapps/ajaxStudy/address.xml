@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="euc-kr" ?> <!-- 모든 xml은 이 태그로 시작. 반드시 첫 번째 줄에 작성. -->
+<!-- /ajaxStudy/WebContent/address.xml -->
+<!-- well formed : 문서작성 규칙에 맞게 잘 작성된 xml. 공백은 태그 이름에 사용 불가. 단 뒤 쪽에는 가능. -->
+<states>  <!-- root태그. 단 한 개만 존재. -> 문서 작성 규칙임. -->
+	<north><state>강북구</state><state>노원구</state><state>도봉구</state></north>  <!-- 화이트 스페이스 : 의미없는 공백. 구조적으로 보기 좋게 하려고 넣은 공백. -->
+	<south><state>강남구</state><state>서초구</state><state>관악구</state></south>
+	<east><state>강동구</state><state>송파구</state><state>성동구</state></east>
+	<west><state>강서구</state><state>구로구</state><state>양천구</state></west>  <!-- 태그 하나하나를 객체로 인식해야 함. -->
+</states>  <!-- 시작태그가 있으면 반드시 종료태그 존재. 대소문자도 구별.(html은 하지 않음.) -->
+<!-- 트리 구조. root태그 맨 위에 root노드(/) 존재. 문서노드라고 함. 가상의 노드임. -->

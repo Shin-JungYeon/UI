@@ -1,0 +1,20 @@
+1558329359882	Encapsulate field 'pass'
+1558342832674	Rename type 'MemberAllAction'
+1558342900509	Rename type 'AllAction'
+1558416677071	Rename resource 'pnoticeAddForm.jsp'
+1558422006979	Encapsulate field 'jnum'
+1558422010631	Encapsulate field 'pnum'
+1558426437064	Rename type 'MemberAllAction'
+1558506782412	Delete element
+1558576318620	Rename resource 'writeForm.jsp'
+1558599419378	Rename resource 'pitemaddForm.jsp'
+1558607554522	Delete elements
+1558607569379	Delete element
+1558609824240	Rename resource 'decorators.xml'
+1558609833212	Rename resource 'sitemesh.xml'
+1558610092516	Delete elements
+1558610097780	Rename resource 'decoratorBoard.xml'
+1558610106028	Rename resource 'sitemeshBoard.xml'
+1558610112199	Rename resource 'decorator.xml'
+1558674309391	Delete element
+1558675270805	Rename type 'AdminForm'

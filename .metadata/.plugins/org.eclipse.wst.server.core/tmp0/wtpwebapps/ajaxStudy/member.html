@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- /WebContent/member.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Ajax을 이용한 회원이름 검색</title>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+	function loadName(f) {
+		var params = "name=" + f.name.value;
+		sendRequest("member.jsp", params, memberList, "POST");
+	}
+	
+	//콜백 함수. 상태가 바뀌면 자동으로 호출 됨.
+	function memberList() {
+		if(ajax.readyState == 4) {
+			if(ajax.status == 200) {
+				console.log(ajax.responseText)
+				list.innerHTML = ajax.responseText;
+			} else {
+				alert("서버오류 : " + ajax.status)
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<form name="f">
+		<input type="text" name="name">
+		<input type="button" value="검색" onclick="loadName(this.form)">
+	</form>
+	<div id="list"></div>
+</body>
+</html>

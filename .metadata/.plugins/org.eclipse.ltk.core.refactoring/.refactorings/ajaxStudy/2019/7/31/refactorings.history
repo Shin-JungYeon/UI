@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ajaxStudy/WebContent/jsondate.html&apos; to &apos;jsondata.html&apos;" description="Rename resource &apos;jsondate.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/jsondate.html" name="jsondata.html" stamp="1564466572322" updateReferences="true"/>
+</session>
