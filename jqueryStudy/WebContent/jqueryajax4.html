@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- /WebContent/jqueryajax4.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>아이디 검색</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#submit").click(function() {
+			event.preventDefault();
+			var data = "id=" + $("#id").val();
+			$.ajax({
+				url : "ajax4.jsp",
+				type : "post",
+				data : data,
+				success : function(data) {
+					$("#message").html(data);
+					/*
+					if($("h3").is(".t")) {
+						$("#id").val("");
+					}
+					*/
+				},
+				error : function(xhr) {
+					alert("서버오류 : " + xhr.status);
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<form name="f">
+		사용자 아이디 <input type="text" id="id">
+		<input type="submit" value="중복검사" id="submit">
+	</form>
+	<div id="message"></div>
+</body>
+</html>

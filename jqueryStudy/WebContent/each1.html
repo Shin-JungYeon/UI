@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- /WebContent/each1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>배열 객체 예제</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var arr = [{name:"구디", link:"http://www.goodee.co.kr"},
+				   {name:"네이버", link:"http://www.naver.com"},
+				   {name:"다음", link:"http://www.daum.net"},
+				   {name:"구글", link:"http://www.google.com"}]  //json 형태의 객체. jquery는 eval을 통한 객체화 필요 없음.
+		var output = "";
+		//$.each() : 반복문.
+		$.each(arr, function(index, item) {  //일반적인 for구문처럼..
+			output += "<a href='" + item.link + "'>"
+			output += "<h1>" + index + "." + item.name + "</h1></a>"
+		})
+//		$("body").html(output);  //body 태그 안에 넣어줌. arr.innerHTML = output; 과 같음.
+		$("#arr").html(output);  //id 속성값이 arr인 태그 안에 넣어줌.
+		
+		var obj = {name:"홍길동", gender:"남자"};
+		$.extend(obj, {part:"의적", loc:"율도국"})  //$.extend : 새로운 멤버 객체 추가. 상속의 개념과 비슷.
+		output = "";
+		$.each(obj, function(key, value) {  //하나의 json객체에서 멤버 하나하나를 key와 value를 이용해서 가져올 수 있음.
+			output += key + " : " + value + "\n<br>";
+		})
+		$("#obj").html(output);  //obj.innerHTML = output;
+		
+		//h3 태그를 첫 번 째부터 빨강, 주황, 노랑, 초록, 파랑, 남색으로 설정하기.
+		var colors = ["red", "orange", "yellow", "green", "blue", "navy"];
+		$("h3").each(function(i, item) {  //h3태그를 전부 가져와서 순서대로 접근. item은 h3 태그 한 개.
+			$(this).css("color", colors[i]);  //this : 현재 item
+		})
+		
+		//h4 태그를 첫 번 째부터 빨강, 주황, 노랑, 초록, 파랑, 남색으로 설정하기. 필터 이용하기.
+		$.each(colors, function(i, color) {
+			$("h4:eq(" + i +")").css("color", color);  //처음부터 태그 하나씩 가져와서 적용.
+		})
+	}) 
+</script>
+</head>
+<body>
+	<div id="arr"></div>
+	<div id="obj"></div>
+	
+	<h3>H3 : Header_0</h3><h3>H3 : Header_1</h3><h3>H3 : Header_2</h3>
+	<h3>H3 : Header_3</h3><h3>H3 : Header_4</h3><h3>H3 : Header_5</h3>
+	
+	<h4>H3 : Header_0</h4><h4>H3 : Header_1</h4><h4>H3 : Header_2</h4>
+	<h4>H3 : Header_3</h4><h4>H3 : Header_4</h4><h4>H3 : Header_5</h4>
+</body>
+</html>

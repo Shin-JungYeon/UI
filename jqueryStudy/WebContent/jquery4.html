@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- /WebContent/jquery4.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>JQuery4 예제</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("tr:nth-child(3n+1)").css("background", "green");  //tr:-- : tr의 상태 지정.
+		$("tr:nth-child(3n+2)").css("background", "yellow");
+		$("tr:nth-child(3n)").css("background", "blue");
+		$("tr:eq(0)").css("background", "black").css("color", "white");  //eq(0) : 0번 인덱스를 가진 tr. 현재 나의 인덱스를 찾아감. eq(0) == first
+		
+		$("h3:odd").css("background", "yellow").css("color", "blue");
+		$("h3:even").css("background", "black").css("color", "yellow");
+		
+		$("h2:nth-child(3n+1)").css("background", "yellow").css("color", "blue");
+		$("h2:nth-child(3n+2)").css("background", "green").css("color", "white");
+		$("h2:nth-child(3n)").css("background", "black").css("color", "white");
+	})
+</script>
+</head>
+<body>
+	<table border="1">
+		<tr><th>이름</th><th>혈액형</th><th>지역</th></tr>
+		<tr><td>홍길동</td><td>O형</td><td>서울</td></tr>
+		<tr><td>이몽룡</td><td>A형</td><td>남원</td></tr>
+		<tr><td>임꺽정</td><td>B형</td><td>전주</td></tr>
+		<tr><td>김삿갓</td><td>AB형</td><td>하남</td></tr>
+		<tr><td>성춘향</td><td>B형</td><td>남원</td></tr>
+		<tr><td>향단</td><td>B형</td><td>남원</td></tr>
+		<tr><td>방자</td><td>O형</td><td>남원</td></tr>
+	</table>
+	
+	<hr>
+	
+	h3 태그 중 홀수 번 째 인덱스를 노란바탕에 파란 글씨로,	짝수 번 째를 검정바탕에 노랑글씨로 설정하기.
+	<h3>H3 : 0</h3><h3>H3 : 1</h3><h3>H3 : 2</h3><h3>H3 : 3</h3><h3>H3 : 4</h3><h3>H3 : 5</h3>
+	
+	<hr>
+	
+	h2 태그 중 3의 배수 번 째를 검정바탕에 흰글씨로, 3으로 나눈 나머지가 1인 경우 노란바탕에 파란글씨로, 3으로 나눈 나머지가 2인 경우 짝수 번 째를 초록바탕에 흰글씨로 설정하기.
+	<h2>H2 : 0</h2><h2>H2 : 1</h2><h2>H2 : 2</h2><h2>H2 : 3</h2><h2>H2 : 4</h2><h2>H2 : 5</h2>
+</body>
+</html>

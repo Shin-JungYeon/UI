@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- /WebContent/jqueryajax1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Jquery에서 ajax 구현하기</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btn1").click(function() {
+			//ajax 실행.
+			$.ajax("ajax1-1.jsp", {
+				success : function(data) {  //콜백 함수. data : 서버에서 전달해준 데이터
+					$("body").append(data);  //body 태그의 끝에 추가.
+				}
+			})
+		})
+		$("#btn1remove").click(function() {
+			$("h1").get(-1).remove();  //$("h1").get(-1) : 기본은 0번부터 가져옴. -1은 끝에서 첫 번째 h1 태그를 선택.
+		})
+		
+		//btn2 버튼을 클릭하면, ajax1-2.jsp 페이지의 내용을 화면에 추가하기.
+		$("#btn2").click(function() {
+			$.ajax({
+				url : "ajax1-2.jsp",
+				type : "post",
+				data : "name=" + $("#name").val() + "&age=" + $("#age").val(),
+				success : function(data) {
+					$("body").append(data);
+				}
+			})
+		})
+		$("#btn2remove").click(function() {
+			$("h2:last").remove();  //h2 태그 중 마지막 태그 선택.
+		})
+	})
+</script>
+</head>
+<body>
+	<button id="btn1">ajax1-1.jsp</button>
+	<button id="btn1remove">ajax1-1.jsp에서 추가된 내용 제거</button>
+	
+	<br><hr>
+	
+	<input type="text" id="name">
+	<input type="text" id="age">
+	<button id="btn2">ajax1-2.jsp</button>
+	<button id="btn2remove">ajax1-2.jsp에서 추가된 내용 제거</button>
+</body>
+</html>

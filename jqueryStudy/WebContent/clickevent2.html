@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- /WebContent/clickevent2.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>클릭된 내용을 출력하기</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+/*
+		$("div").click(function() {			
+			$("#result").html($(this).html());  //this 자체가 아닌 this가 가진 html(내용)만 전달.
+		})
+*/
+		//on("event", function()) : "event"이라는 이벤트를 등록하고 이벤트가 발생하면 이벤트 핸들러(function) 실행. 위와 같은 결과. on대신 bind 가능. unbind는 이벤트 해제.
+		$("div").on("click", function() {
+			$("#result").html($(this).html());
+		})
+	})
+</script>
+<style type="text/css">
+	* {margin: 0px; padding: 0px;}
+	div {
+		margin: 5px; padding: 0px;
+		border-width: 3px;
+		border-style: solid;
+		border-color: black;
+		border-radius: 10px;
+	}
+</style>
+</head>
+<body>
+	<div><h1>Header-0</h1><p>문단-0</p></div>
+	<div><h1>Header-1</h1><p>문단-1</p></div>
+	<div><h1>Header-2</h1><p>문단-2</p></div>
+	<h3>result</h3>
+	<div id="result"></div>
+</body>
+</html>

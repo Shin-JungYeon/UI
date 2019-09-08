@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- /WebContent/keyevent1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>글자수 세기</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var num1 = $("h1").text();  //문자열을 가져와서 바로 숫자로 인식 가능.
+		/*
+		 * key 이벤트 : 키보드로 문자가 입력된 경우
+		 * 	1. keydown() : 키가 눌려질 때 발생되는 이벤트.
+		 *	2. keypress() : 키가 눌려져 있는 상태에서 발생되는 이벤트.
+		 *	3. keyup() : 키에서 손을 뗐을 때(키가 올라올 때) 발생되는 이벤트.
+		 */
+		$("textarea").keydown(function() {
+			var num2 = num1 - $("textarea").val().length;  //$("textarea").val().length : textarea에 작성된 문자열(value)의 길이.
+			if(num2 < 0) {
+				$("h1").css("color", "red")
+			} else {
+				$("h1").css("color", "black");
+			}
+			$("h1").html(num2);
+		})
+	})
+</script>
+</head>
+<body>
+	<p>글쓰기</p><h1>50</h1>
+	<textarea rows="10" cols="70"></textarea>
+</body>
+</html>

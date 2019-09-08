@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- /WebContent/jqueryajax2.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>로그인 하기</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#submit").click(function() {
+			event.preventDefault();  //submit의 원래 기능을 없앰.
+			$.ajax({
+				url : "ajax2.jsp",
+				type : "post",
+				//data : "id=" + $("#id").val() + "&pass=" + $("#pass").val(),
+				data : {  //json 형태로 파라미터 값 전달해줄 수 있음.
+					id : $("#id").val(),
+					pass : $("#pass").val()
+				},
+				success : function(data) {
+					$("#message").html(data);
+				},
+				error : function(xhr) {
+					alert("서버오류 : " + xhr.status);
+				}
+			})
+		})
+	})
+</script>
+</head>
+<!-- 
+	1. id, pass 두 개의 파라미터를 ajax2.jsp 페이지에 전송하기.
+	2. ajax2.jsp 페이지에서 member 테이블에서 아이디와 비밀번호 검증. jstl 이용하기.
+		- 로그인 성공 : name님 반갑습니다. 를 id=message 부분에 출력.
+		- 로그인 실패 : 아이디 또는 비밀번호가 틀립니다. 를 id=message 부분에 출력.
+-->
+<body>
+	<form name="f">
+		<input type="text" id="id"><br>
+		<input type="password" id="pass"><br>
+		<input type="submit" value="로그인" id="submit"><br>  <!-- type="submit"은 action을 주지 않으면 내가 나를 계속 호출.-->
+	</form>
+	<div id="message"></div>
+</body>
+</html>

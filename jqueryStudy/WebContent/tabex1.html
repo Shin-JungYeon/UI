@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- /WebContent/tabex1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Tab Card 예제1</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".books").hide();  //화면에서 숨김.
+		$(".movies").hide();
+		$("a").hover(function() {
+			$(this).addClass("rightselect");
+			$(this).parent().addClass("leftselect");  //<span ..> 태그.
+		}/*, function() {
+			$(this).removeClass("rightselect");
+			$(this).parent().removeClass("leftselect");
+		}*/)
+		$("#booksbutton").click(function() {
+			event.preventDefault();  //기존의 원본 객체가 가지고 있었던 고유의 이벤트(기능)를 취소. <a ..> 태그는 원래 다른 페이지로 넘어가는 기능이 있는데 그 기능을 없앰. href="" 에 링크 걸어줘도 넘어가지 않게 됨.
+			$(".books").show();  //화면에 출력.
+			$(".movies").hide();
+			$(this).parent().addClass("leftselect")
+			$("#moviesbutton").parent().removeClass("leftselect");
+		})
+		$("#moviesbutton").click(function() {
+			event.preventDefault();
+			$(".movies").show();
+			$(".books").hide();
+			$(this).parent().addClass("leftselect")
+			$("#booksbutton").parent().removeClass("leftselect");
+		})
+	})
+</script>
+<style type="text/css">
+	.buttons {
+		width: 80px;
+		float: left;
+		text-align: center;
+		background-color: #000000;
+	}
+	a {
+		display: block;
+		padding: 3px;
+		text-decoration: none;
+		font-weight: bold;
+		color: #ffffff;
+	}
+	.rightselect {
+		display: block;
+		padding: 3px;
+		text-decoration: none;
+		font-weight: bold;
+		color: #fffff;
+	}
+	.leftselect {
+		width: 80px;
+		float: left;
+		text-align: center;
+		background-color: #00ff00;
+	}
+</style>
+</head>
+<body>
+	<span class="buttons">
+		<a href="#" id="booksbutton">Books</a>
+	</span>
+	<span class="buttons">
+		<a href="#" id="moviesbutton">Movies</a>
+	</span><br><br>
+	<p class="books">책 설명, 책 목록 등 표시...</p>
+	<p class="movies">영화 설명, 영화 목록 등 표시...</p>
+</body>
+</html>

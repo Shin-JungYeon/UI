@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- /WebContent/jquery1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>JQuery1 예제</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+/*
+ * $(document).ready : 이벤트. 해당 문서의 load가 완료되는 시점. function(){}이 이벤트 핸들러
+ */
+	$(document).ready(function() {
+		$("h1").css("color", "red");
+		$(".item").css("color", "blue");
+		$("#target").css("color", "orange");
+		$("p#target").css("color", "orange");  //굳이 id 속성을 이용해서 바꿔주고 싶으면 태그명이랑 같이 써주면 됨. p태그이면서 id속성 값이 target인 경우.
+	})
+</script>
+</head>
+<body>
+	<h1>Jquery1<p>Jquery1</p></h1>
+	<h1>Jquery1</h1><p>Jquery1</p>
+	<h1 class="item">Jquery class 속성 : item</h1>
+	<h1 class="item">Jquery class 속성 : item</h1>
+	<h1 class="item">Jquery class 속성 : item</h1>
+	<p class="item">Jquery1</p>
+	<h1 id="target">Jquery id 속성 : target</h1>
+	<p id="target">Jquery id 속성 : target</p>  <!-- id속성값은 논리적으로 유일성을 강조한 것이기 때문에 jquery에서는 위에서부터 한 개 있으면 그 다음 id 속성은 무시됨. 이 태그를 위로 올리면 얘가 바뀜. -->
+</body>
+</html>
